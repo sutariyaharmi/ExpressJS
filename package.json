@@ -2,10 +2,10 @@
   "name": "express",
   "version": "1.0.0",
   "description": "",
-  "main": "lecture2.js",
+  "main": "lecture3.js",
   "scripts": {
-    "start": "node Lecture1.js",
-    "dev": "nodemon Lecture2.js"
+    "start": "node Lecture3.js",
+    "dev": "nodemon lecture3.js"
   },
   "keywords": [],
   "author": "",
