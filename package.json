@@ -2,16 +2,17 @@
   "name": "express",
   "version": "1.0.0",
   "description": "",
-  "main": "lecture3.js",
+  "main": "app.js",
   "scripts": {
     "start": "node Lecture3.js",
-    "dev": "nodemon lecture3.js"
+    "dev": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.19.2",
+    "mongoose": "^8.5.3",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
