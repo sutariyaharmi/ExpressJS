@@ -7,8 +7,11 @@ const usersRoutes = require('./routes/users.routes')
 
 // Database Connection
 
+require('dotenv').config();
+const uri = process.env.MONGO_URI
+
 mongoose
-.connect("mongodb://127.0.0.1:27017/userdatabase")
+.connect(uri)
 .then(() => console.log(`Database connection established successfully...`))
 .catch(err => console.log(err));
 
@@ -25,6 +28,7 @@ app.get("/" , (req , res) => {
 app.use("/api/product" , productRoutes);
 app.use("/api/users" , usersRoutes); 
 
-app.listen(1233 , () => {
-    console.log("server start http://localhost:1233"); 
+
+app.listen(5517, () => {
+    console.log("server start http://localhost:5517"); 
 });

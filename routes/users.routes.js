@@ -1,9 +1,8 @@
 const express = require('express');
 
-const { addNewusers, getAllusers, getusers, replaceusers, updateusers, deleteusers } = require('../controller/users.controller');
+const { addNewusers, getAllusers, getusers, updateusers, deleteusers } = require('../controller/users.controller');
 
 const usersRoutes = express.Router();
-
 
 // Add new users - Create
 usersRoutes.post("/" , addNewusers );
@@ -17,12 +16,12 @@ usersRoutes.get("/:id" , getusers);
 
  // Replace Data - Put
 
-usersRoutes.put("/:id" , replaceusers)
+// usersRoutes.put("/:id" , replaceusers)
 
 
 // Update Data - Patch
 
-usersRoutes.patch("/:id" , updateusers)
+usersRoutes.put("/" , updateusers);
 
  // Delelte Data - Delete
 

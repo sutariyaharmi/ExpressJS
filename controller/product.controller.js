@@ -1,8 +1,23 @@
-const products = require("../product.json")
+const products = require("../model/product.model")
 
-exports.addNewProduct = (req ,res)=>{
-    products.push(req.body);
-    res.json({product: req.body , message : 'product Added Success'})
+exports.addNewProduct = async(req ,res)=>{
+    // products.push(req.body);
+    // res.json({users: req.body , message : 'users Added Success'})
+    try {
+        // console.log(req.body);
+        const{productName ,  productPrice , Validity} = req.body;
+        let  product = await products.findOne({productName : productName});
+        if(product)
+            return res.status(400).json({message :" product already exist... "});
+        product = await products.create({
+            productName ,  productPrice , Validity
+        })
+        product.save();
+        res.status(201).json({product , message : "product Added"});
+    } catch (error) {
+        console.log(error);
+         res.status(500).json({message:"Internal Server Error"});   
+    }
 };
 
 exports.getAllProduct = (req , res) => {
