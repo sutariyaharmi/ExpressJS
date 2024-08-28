@@ -9,6 +9,9 @@ const userSchema = mongoose.Schema({
     email:{
         type : String
     },
+    password:{
+        type:String
+    },
     age : {
         type:Number
     },
@@ -24,6 +27,12 @@ const userSchema = mongoose.Schema({
         type : Boolean,
         default : false
     }
-});
+},
+{
+    versionKey : false , 
+    timestamps : true
+}
+
+);
 
 module.exports = mongoose.model('users' , userSchema)

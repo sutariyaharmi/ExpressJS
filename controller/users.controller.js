@@ -1,5 +1,5 @@
 const users = require('../model/user.model')
-const brcypt = require('bcrypt')
+const bcrypt = require('bcrypt');
 
 exports.addNewusers = async(req ,res)=>{
     // products.push(req.body);
@@ -81,3 +81,40 @@ exports.deleteusers = async (req , res) => {
     res.status(500).json({message:"Internal Server Error"})     
 }
 };
+
+// Registration
+
+exports.registerUser = async(req , res) => {
+    try {
+        let user = await users.findOne({email : req.body.email , isDelete:false});
+        if(!user){
+            return res.status(400).json({message: "user already exist..."})
+        }
+        let hashpassword = await bcrypt.hash(req.body.password, 10);
+        user = await users.create({...req.body , password : hashpassword });
+        // users.save();
+        res.status(500).json({user , message:"user Registration successful..."})
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({message:"Internal server error"})       
+    }
+};
+
+// login
+
+exports.loginUser = async(req,res)=>{
+    try {
+        let user = await users.findOne({email:req.body.email , isDelete:false});
+        if(!user){
+            return res.status(404).json({message: 'User not found'});
+        }
+        let matchpassword = await bcrypt.compare(req.body.password , user.password)
+        if(!matchpassword){
+            return res.status(400).json({message: ' email or password not matched...'});
+        }
+        res.status(200).json({message : 'Login Success' , user});  
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({message:"Internal server error"})       
+    }
+}

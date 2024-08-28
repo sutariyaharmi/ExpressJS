@@ -1,18 +1,18 @@
 const express = require('express');
+const userRoutes = express.Router();
 
-const { addNewusers, getAllusers, getusers, updateusers, deleteusers } = require('../controller/users.controller');
+const { addNewusers, getAllusers, getusers, updateusers, deleteusers , registerUser, loginUser } = require('../controller/users.controller');
 
-const usersRoutes = express.Router();
 
 // Add new users - Create
-usersRoutes.post("/" , addNewusers );
+userRoutes.post("/" , addNewusers );
 
 // Get All product - Read
-usersRoutes.get("/" , getAllusers)
+userRoutes.get("/" , getAllusers)
 
 // Get Single product - Read
 
-usersRoutes.get("/:id" , getusers);
+userRoutes.get("/:id" , getusers);
 
  // Replace Data - Put
 
@@ -21,10 +21,18 @@ usersRoutes.get("/:id" , getusers);
 
 // Update Data - Patch
 
-usersRoutes.put("/" , updateusers);
+userRoutes.put("/" , updateusers);
 
  // Delelte Data - Delete
 
- usersRoutes.delete("/:id" ,deleteusers)
+ userRoutes.delete("/:id" ,deleteusers)
 
-module.exports = usersRoutes;
+//  Register User
+
+userRoutes.post("/register" , registerUser);
+
+// Login
+
+userRoutes.post("/login" , loginUser);
+
+module.exports = userRoutes;
